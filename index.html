@@ -8,7 +8,7 @@
     <link rel="icon" type="image/x-icon" href="/images/kfpod.png">
     <link href="https://cdn.jsdelivr.net/npm/daisyui@4.12.14/dist/full.min.css" rel="stylesheet" type="text/css" />
     <script src="https://cdn.tailwindcss.com"></script>
-    
+
     <style>
         main {
             background-color: #becbd3;
@@ -17,15 +17,17 @@
             background-position: bottom;
             background-blend-mode: soft-light;
         }
+
         body,
         footer {
             background-color: #bdcbd3;
         }
 
         @media (prefers-color-scheme: dark) {
+
             html,
             body,
-            main, 
+            main,
             footer {
                 background-color: #212121 !important;
             }
@@ -34,41 +36,41 @@
     <!------------ 
     Templates
  ------------->
- <template id="kfpod">
-    <div class="collapse collapse-arrow join-item border-base-300 border"><input type="radio" name="list-ep" />
-        <div class="collapse-title text-xl font-medium">
-            <a class="ep-link" href=""><span class="ep-title"></span></a>
+    <template id="kfpod">
+        <div class="collapse collapse-arrow join-item border-base-300 border"><input type="radio" name="list-ep" />
+            <div class="collapse-title text-xl font-medium">
+                <a class="ep-link" href=""><span class="ep-title"></span></a>
+            </div>
+            <div class="collapse-content">
+                <p class="ep-description"></p>
+            </div>
         </div>
-        <div class="collapse-content">
-            <p class="ep-description"></p>
-        </div>
-    </div>
-</template>
-<script>
-    function createFromTemplate(data) {
-        for (const [section, items] of Object.entries(data)) {
-            let selector = 'div#' + section;
-            const containerdiv = document.querySelector(selector);
-            items.forEach(function(item) {
-                const template = document.querySelector('#kfpod');
-                // Clone the new row and insert it.
-                const clone = template.content.cloneNode(true);
-                // Update the link href.
-                let ep_link = clone.querySelector("a.ep-link");
-                ep_link.href = item.url;
-                // Update the title.
-                let ep_title = clone.querySelector("span.ep-title");
-                ep_title.textContent = item.title;
-                // Update the description.
-                let ep_description = clone.querySelector("p.ep-description");
-                ep_description.textContent = item.description;
-                // Add content to HTML.
-                containerdiv.appendChild(clone);
-            });
-        }
+    </template>
+    <script>
+        function createFromTemplate(data) {
+            for (const [section, items] of Object.entries(data)) {
+                let selector = 'div#' + section;
+                const containerdiv = document.querySelector(selector);
+                items.forEach(function (item) {
+                    const template = document.querySelector('#kfpod');
+                    // Clone the new row and insert it.
+                    const clone = template.content.cloneNode(true);
+                    // Update the link href.
+                    let ep_link = clone.querySelector("a.ep-link");
+                    ep_link.href = item.url;
+                    // Update the title.
+                    let ep_title = clone.querySelector("span.ep-title");
+                    ep_title.textContent = item.title;
+                    // Update the description.
+                    let ep_description = clone.querySelector("p.ep-description");
+                    ep_description.textContent = item.description;
+                    // Add content to HTML.
+                    containerdiv.appendChild(clone);
+                });
+            }
 
-    }
-</script>
+        }
+    </script>
 </head>
 
 <body>
@@ -85,281 +87,315 @@
         </nav> -->
         <main class="mb-auto px-10">
             <p class="text-lg py-3">
-                Alex Jones is a fraud. The Knowledge Fight podcast has been fact
-                checking Jones for years. This website was created to give new
-                listeners a way to jump into the KF ecosystem.
+                Alex Jones is a fraud. The Knowledge Fight podcast has been fact checking Jones for years, and have
+                accumulated hundreds of episodeds debunking all of the claims made on InfoWars. Dan and Jordan also
+                outline just how Alex Jones pulls off his grift by detailing all of the rhetorical tricks the
+                large-necked host uses to con his listeners.
+            </p>
+            <p>
+                While this podcast is both enjoyable and informative, jumping into it can be daunting due to the
+                overwhelming amount of information involved. This website was created to give new listeners a way to
+                understand and jump into the Knowledge Fight podcast world.
             </p>
 
             <div class="container mx-auto py-10 grid gap-10">
-<!-- Important Information -->
-<section>
-    <h2 class="text-4xl py-3 font-black">Important Episodes</h2>
-    <p class="text-lg py-3">A good place to start is with some important episodes in the Knowledge Fight world. Some of these explain certain characters in InfoWars lore, while others show how certain important events were covered. Either way, these should give you a good idea of what the podcast is about.</p>
+                <!-- Important Information -->
+                <section>
+                    <h2 class="text-4xl py-3 font-black">Important Episodes</h2>
+                    <p class="text-lg py-3">A good place to start is with some important episodes in the Knowledge Fight
+                        world. Some of these explain certain characters in InfoWars lore, while others show how certain
+                        important events were covered. Either way, these should give you a good idea of what the podcast
+                        is about.</p>
 
-    <div id="importantInfo" class="bg-accent-content/50 dark:text-gray-200 join join-vertical text-base-100 w-full">
-        <script>
-            const importantInfo = {'importantInfo': [
-                {
-                        'url': 'https://knowledgefight.libsyn.com/knowledge-fight-all-about-steve',
-                        'title': '#340: All About Steve (Pieczenik)',
-                        'description': "Today, Dan and Jordan take a moment to take a closer look at one of Alex Jones' main sources of incredibly bad information, Steve Pieczenik."
-                },    
-                {
-                        'url': 'https://knowledgefight.libsyn.com/517-january-5-6-2021',
-                        'title': '#517: January 5-6, 2021 (January 6th IW coverage)',
-                        'description': "Today, Dan and Jordan take a look at how things went down on Infowars on the day when right-wing dingdongs stormed Washington DC."
-                },
-                {
-                        'url': 'https://knowledgefight.libsyn.com/615-november-8-2021',
-                        'title': '#615: November 8, 2021? (Jon Ronson interview)',
-                        'description': "Today, Dan and Jordan attempt to cover a recent episode of The Alex Jones Show, but decide to bail and have a chat with Jon Ronson instead. (Apologies about some slight sound issues)"
-                },
-            ]};
-            createFromTemplate(importantInfo);
-        </script>
-    </div>
-</section>
+                    <div id="importantInfo"
+                        class="bg-accent-content/50 dark:text-gray-200 join join-vertical text-base-100 w-full">
+                        <script>
+                            const importantInfo = {
+                                'importantInfo': [
+                                    {
+                                        'url': 'https://knowledgefight.libsyn.com/knowledge-fight-all-about-steve',
+                                        'title': '#340: All About Steve (Pieczenik)',
+                                        'description': "Today, Dan and Jordan take a moment to take a closer look at one of Alex Jones' main sources of incredibly bad information, Steve Pieczenik."
+                                    },
+                                    {
+                                        'url': 'https://knowledgefight.libsyn.com/517-january-5-6-2021',
+                                        'title': '#517: January 5-6, 2021 (January 6th IW coverage)',
+                                        'description': "Today, Dan and Jordan take a look at how things went down on Infowars on the day when right-wing dingdongs stormed Washington DC."
+                                    },
+                                    {
+                                        'url': 'https://knowledgefight.libsyn.com/615-november-8-2021',
+                                        'title': '#615: November 8, 2021? (Jon Ronson interview)',
+                                        'description': "Today, Dan and Jordan attempt to cover a recent episode of The Alex Jones Show, but decide to bail and have a chat with Jon Ronson instead. (Apologies about some slight sound issues)"
+                                    },
+                                ]
+                            };
+                            createFromTemplate(importantInfo);
+                        </script>
+                    </div>
+                </section>
 
-<!-- Formulaic Objections -->
+                <!-- Formulaic Objections -->
                 <section>
                     <h2 class="text-4xl py-3 font-black">Sandy Hook Trial Depositions</h2>
                     <p class="text-lg py-3">Alex Jones often says that he had little to no involvment in the ongoing
                         harassment of the grieving Sandy Hook families. But when faced with an actual court setting,
                         does he change his tune? Spoiler: yes he does.</p>
 
-                    <div id="formulaic" class="bg-accent-content/50 dark:text-gray-200 join join-vertical text-base-100 w-full">
+                    <div id="formulaic"
+                        class="bg-accent-content/50 dark:text-gray-200 join join-vertical text-base-100 w-full">
                         <script>
-                            const formulaic = {'formulaic': [
-                                {
+                            const formulaic = {
+                                'formulaic': [
+                                    {
                                         'url': 'https://knowledgefight.libsyn.com/knowledge-fight-formulaic-objections',
                                         'title': 'Episode 1: Alex Jones',
                                         'description': "Today, Dan and Jordan discuss the recent deposition that Alex Jones had to give inhis Sandy Hook lawsuit. Does Alex admit he still thinks there's something fishy about Sandy Hook? Does Alex's lawyer pick a fight with opposing council as a distraction? Does Alex accidentally reveal that he doesn't even care enough to know."
 
-                                },
-                                {
+                                    },
+                                    {
                                         'url': 'https://knowledgefight.libsyn.com/knowledge-fight-formulaic-objections-part-2',
                                         'title': 'Episode 2',
                                         'description': "Today, Dan and Jordan discuss a trio of depositions that were recently released in the InfoWars/Sandy Hook lawsuit, and marvel at the uniquely brazen vibes of each."
-                                },
-                                {
+                                    },
+                                    {
                                         'url': "https://knowledgefight.libsyn.com/knowledge-fight-formulaic-objections-part-3",
                                         'title': 'Episode 3: Roger Stone',
                                         'description': "Today, Dan and Jordan reflect on the sentencing of Roger Stone in a very somber way, by discussing some recent video that was released of his very angry and very petty deposition a defamation suit"
-                                },
-                                {
+                                    },
+                                    {
                                         'url': "https://knowledgefight.libsyn.com/641-formulaic-objections-part-4",
                                         'title': 'Episode 4: Daria &amp; Alex Jones',
                                         'description': "Today, Dan and Jordan break down the recent depositions that were done with Infowars corporate representative Daria and Alex Jones himself. Also, Mark Bankston drops by to provide some surprising context"
-                                },
-                                {
+                                    },
+                                    {
                                         'url': "https://knowledgefight.libsyn.com/664-formulaic-objections-part-5",
                                         'title': 'Episode 5: Kit Daniels',
                                         'description': "Today, Dan and Jordan discuss the deposition of Infowars Managing Editor Kit Daniels in his lawsuit regarding his misidentifying of the Parkland shooter. Plus, plaintiff's attorney Bill Ogden joins the gents to discuss the act of deposing Info-Warrior"
-                                },
-                                {
+                                    },
+                                    {
                                         'url': "https://knowledgefight.libsyn.com/665-formulaic-objections-part-6",
                                         'title': 'Episode 6: Owen Shroyer, Cuck-Destroyer',
                                         'description': "Today, Dan and Jordan wrap up their run of depositions by discussing the December 2021 questioning of The Cuck-Destroyer, Owen Shroyer"
-                                },
-                                {
+                                    },
+                                    {
                                         'url': "https://knowledgefight.libsyn.com/685-formulaic-objections-part-7",
                                         'title': 'Episode 7: Corporate Representatives',
                                         'description': "Today, Dan and Jordan return to their acclaimed series of deposition-related episodes, as they break down two depositions featuring a person brought in to be Infowars' corporate representative"
-                                },
-                                {
+                                    },
+                                    {
                                         'url': "https://knowledgefight.libsyn.com/739-formulaic-objections-part-8",
                                         'title': 'Episode 8: Adan Salazar',
                                         'description': "Today, Dan and Jordan celebrate Hot Shot Lawyer Norm Pattis mentioning them on his podcast by breaking down a deposition from the Connecticut case against Alex. In this installment, attorney Chris Mattei deposes long-time Infowars writer/editor Adan Salazar, and things get fishy"
-                                },
-                                {
+                                    },
+                                    {
                                         'url': "https://knowledgefight.libsyn.com/742-formulaic-objections-part-9",
                                         'title': 'Episode 9: Alex Jones (CT)',
                                         'description': "Today, Dan and Jordan begin their coverage of Alex's depositions in the Connecticut case. In this installment, Alex makes some wild accusations, seems to forget almost everything, and gets caught in a bit of a trap about Dan Bidondi"
-                                },
-                                {
+                                    },
+                                    {
                                         'url': "https://knowledgefight.libsyn.com/745-formulaic-objections-part-10",
                                         'title': 'Episode 10: Alex Jones (CT) Day 2',
                                         'description': "Today, Dan and Jordan go through Day 2 of Alex's deposition in the Connecticut trial. In this installment, Alex continues to pretend to not really know Dan Bidondi, claims he has no idea what businesses he owns, and eventually resorts to doodling to self-soothe"
-                                },
-                                {
+                                    },
+                                    {
                                         'url': "https://knowledgefight.libsyn.com/750-formulaic-objections-part-11",
                                         'title': 'Episode 11: Dr. David Jones',
                                         'description': "Today, Dan and Jordan continue their exploration of the depositions of Infowars employees by examining a 2019 interview with Alex's dad, Dr. David Jones"
-                                },
-                                {
+                                    },
+                                    {
                                         'url': "https://knowledgefight.libsyn.com/754-formulaic-objections-part-12",
                                         'title': 'Episode 12: Dan Bidondi',
                                         'description': "Today, Dan and Jordan release the Kraken. In this installment, the gents review the 2021 deposition of Dan Bidondi, who is much less Kraken-like in a formal setting. Still a little Kraken-esque, but not very"
 
-                                },
-                                {
+                                    },
+                                    {
                                         'url': "https://knowledgefight.libsyn.com/765-formulaic-objections-part-13",
                                         'title': 'Episode 13: Head of Business Operations',
                                         'description': "Today, Dan and Jordan still don't have Alex's 2023 predictions to discuss, so they take the opportunity to break down the deposition of Alex's head of business operations, who doesn't seem to like Alex or his show all that much. (Note: there is a little audio problem around the 54:00 point in the episode that I couldn't repair."
-                                },
-                                {
+                                    },
+                                    {
                                         'url': "https://knowledgefight.libsyn.com/768-formulaic-objections-part-14",
                                         'title': 'Episode 14: Alex Jones (TX)',
                                         'description': "Today, Dan and Jordan discuss an early deposition in the Texas case against Alex Jones. This installment features a complicated and confusing appearance by Rob Jacobson, the Infowars resident documentary filmmaker who was mocked for warning against covering Sandy Hook"
-                                },
-                                {
+                                    },
+                                    {
                                         'url': "https://knowledgefight.libsyn.com/771-formulaic-objections-part-15",
                                         'title': 'Episode 15: Rob Dew',
                                         'description': "Today, Dan and Jordan revisit the man who made them fall in love with depositions to begin with, Corporate Representative Extraordinaire Rob Dew. In this installment, Dew reveals his love of long pauses, not answering questions, and suggesting that he still thinks Adam Lanza did not act alone"
-                                },
-                                {
+                                    },
+                                    {
                                         'url': "https://knowledgefight.libsyn.com/984-formulaic-objections-part-16",
                                         'title': 'Episode 16: Owen Shroyer',
                                         'description': "In this installment, Dan and Jordan discuss a recent deposition that Owen Shroyer had to appear for after he misidentified the shooter in the 2023 Allen outlet mall shooting. No gummi worms this time, but Owen is still a puppet."
-                                }
-                            ]};
+                                    }
+                                ]
+                            };
                             createFromTemplate(formulaic);
                         </script>
                     </div>
                 </section>
-<!-- 9/11 -->
+                <!-- 9/11 -->
                 <section>
                     <h2 class="text-4xl py-3 font-black">9/11</h2>
                     <p class="text-lg py-3">Alex Jones is supposedly known for predicting 9/11. Did he actually do so,
                         or does history remember it differently?</p>
 
-                    <div id="sept11" class="bg-accent-content/50 dark:text-gray-200 join join-vertical text-base-100 w-full">
+                    <div id="sept11"
+                        class="bg-accent-content/50 dark:text-gray-200 join join-vertical text-base-100 w-full">
                         <script>
-                            const sept11 = {'sept11': [
-                            {
-                                'url': 'https://knowledgefight.libsyn.com/knowledge-fight-predicting-911',
-                                'title': '#249: Predicting 9/11',
-                                'description': "Today, Dan and Jordan take a look at Alex Jones' claim that he predicted the attacks of September 11th. Alex made his prediction in July of 2001, but is there more to this story than he is telling? As is always the case with Alex, it appears that there is."
+                            const sept11 = {
+                                'sept11': [
+                                    {
+                                        'url': 'https://knowledgefight.libsyn.com/knowledge-fight-predicting-911',
+                                        'title': '#249: Predicting 9/11',
+                                        'description': "Today, Dan and Jordan take a look at Alex Jones' claim that he predicted the attacks of September 11th. Alex made his prediction in July of 2001, but is there more to this story than he is telling? As is always the case with Alex, it appears that there is."
 
-                            },
-                            {
-                                'url': 'https://knowledgefight.libsyn.com/703-911-part-1',
-                                'title': '#703: Part 1',
-                                'description': "Today, Dan and Jordan celebrate their landmark 703rd episode by finally covering perhaps the most important day in Alex Jones' career, September 11, 2001."
+                                    },
+                                    {
+                                        'url': 'https://knowledgefight.libsyn.com/703-911-part-1',
+                                        'title': '#703: Part 1',
+                                        'description': "Today, Dan and Jordan celebrate their landmark 703rd episode by finally covering perhaps the most important day in Alex Jones' career, September 11, 2001."
 
-                            },
-                            {
-                                'url': 'https://knowledgefight.libsyn.com/704-911-part-2',
-                                'title': '#704: Part 2',
-                                'description': "Today, Dan and Jordan wrap up their look at Alex's activities from September 11, 2001 by looking at his evening broadcast. Does Alex still think the EU was probably behind 9/11? Can Alex be any more disrespectful than he was that morning? Does Alex get into a fight with a special celebrity guest?"
+                                    },
+                                    {
+                                        'url': 'https://knowledgefight.libsyn.com/704-911-part-2',
+                                        'title': '#704: Part 2',
+                                        'description': "Today, Dan and Jordan wrap up their look at Alex's activities from September 11, 2001 by looking at his evening broadcast. Does Alex still think the EU was probably behind 9/11? Can Alex be any more disrespectful than he was that morning? Does Alex get into a fight with a special celebrity guest?"
 
-                            }
-                            ]};
+                                    }
+                                ]
+                            };
                             createFromTemplate(sept11);
                         </script>
                     </div>
                 </section>
-<!-- Endgame -->
+                <!-- Endgame -->
                 <section>
                     <h2 class="text-4xl py-3 font-black">Debunking the Endgame Documentary</h2>
-                    <p class="text-lg py-3">One of Alex's more famous works is his documentary "Endgame: Blueprint for Global Enslavement" that attempts to argue that a secret New World Order is attempting to achieve global control and enslavement. Dan and Jordan compare Jones's claims to actual facts, and you'll never guess what happens.</p>
+                    <p class="text-lg py-3">One of Alex's more famous works is his documentary "Endgame: Blueprint for
+                        Global Enslavement" that attempts to argue that a secret New World Order is attempting to
+                        achieve global control and enslavement. Dan and Jordan compare Jones's claims to actual facts,
+                        and you'll never guess what happens.</p>
 
-                    <div id="endgame" class="bg-accent-content/50 dark:text-gray-200 join join-vertical text-base-100 w-full">
+                    <div id="endgame"
+                        class="bg-accent-content/50 dark:text-gray-200 join join-vertical text-base-100 w-full">
                         <script>
-                            const endgame = {'endgame': [
-                            {
-                                'url': 'https://knowledgefight.libsyn.com/knowledge-fight-endgame-part-1',
-                                'title': '#130A: Endgame, Part 1',
-                                'description': "Today, Dan and Jordan embark on an adventure that is probably a very dumb idea: covering the entirety of Alex Jones' very stupid 'documentary' Endgame. Dan found approximately 130 specific instances of Alex either lying or 'playing with the truth,' so this could take a while. In this first episode, the gents learn that Alex doesn't know what 'quote' means, but he does love Nazi propaganda films."
+                            const endgame = {
+                                'endgame': [
+                                    {
+                                        'url': 'https://knowledgefight.libsyn.com/knowledge-fight-endgame-part-1',
+                                        'title': '#130A: Endgame, Part 1',
+                                        'description': "Today, Dan and Jordan embark on an adventure that is probably a very dumb idea: covering the entirety of Alex Jones' very stupid 'documentary' Endgame. Dan found approximately 130 specific instances of Alex either lying or 'playing with the truth,' so this could take a while. In this first episode, the gents learn that Alex doesn't know what 'quote' means, but he does love Nazi propaganda films."
 
-                            },
-                            {
-                                'url': 'https://knowledgefight.libsyn.com/knowledge-fight-endgame-part-2',
-                                'title': '#130B: Endgame, Part 2',
-                                'description': "Today, Dan and Jordan's exploration of Alex Jones' increasingly amateurish and embarrassing 'documentary' Endgame continues. On this episode, the gents follow Alex to Canada where he yells at strangers with a megaphone, and they learn about how important it is, when you're making outrageous accusations, to have not-insane people be your source."
+                                    },
+                                    {
+                                        'url': 'https://knowledgefight.libsyn.com/knowledge-fight-endgame-part-2',
+                                        'title': '#130B: Endgame, Part 2',
+                                        'description': "Today, Dan and Jordan's exploration of Alex Jones' increasingly amateurish and embarrassing 'documentary' Endgame continues. On this episode, the gents follow Alex to Canada where he yells at strangers with a megaphone, and they learn about how important it is, when you're making outrageous accusations, to have not-insane people be your source."
 
-                            },
-                            {
-                                'url': 'https://knowledgefight.libsyn.com/knowledge-fight-endgame-part-3',
-                                'title': '#130C: Endgame, Part 3',
-                                'description': "Today, Dan and Jordan enter the part of their Endgame coverage where both of them start to lose patience with Alex Jones' silly games, almost reaching their breaking point before a pizza arrives toward the end of this episode and gave them their second wind. "
+                                    },
+                                    {
+                                        'url': 'https://knowledgefight.libsyn.com/knowledge-fight-endgame-part-3',
+                                        'title': '#130C: Endgame, Part 3',
+                                        'description': "Today, Dan and Jordan enter the part of their Endgame coverage where both of them start to lose patience with Alex Jones' silly games, almost reaching their breaking point before a pizza arrives toward the end of this episode and gave them their second wind. "
 
-                            },
-                            {
-                                'url': 'https://knowledgefight.libsyn.com/knowledge-fight-endgame-part-4',
-                                'title': '#130D: Endgame, Part 4',
-                                'description': "Today, Dan and Jordan soldier forward through the exceedingly stupid Alex Jones 'documentary' Endgame. In this installment, the gents wrap up some Nazi talk, get pretty sick of Alex's shit, then Dan breaks down the 1934 film Tomorrow's Children."
+                                    },
+                                    {
+                                        'url': 'https://knowledgefight.libsyn.com/knowledge-fight-endgame-part-4',
+                                        'title': '#130D: Endgame, Part 4',
+                                        'description': "Today, Dan and Jordan soldier forward through the exceedingly stupid Alex Jones 'documentary' Endgame. In this installment, the gents wrap up some Nazi talk, get pretty sick of Alex's shit, then Dan breaks down the 1934 film Tomorrow's Children."
 
-                            },
-                            {
-                                'url': 'https://knowledgefight.libsyn.com/knowledge-fight-endgame-part-5',
-                                'title': '#130E: Endgame, Part 5',
-                                'description': "Today, Dan and Jordan complete their coverage of Alex Jones' terrible 'documentary' Endgame. It's been a long and difficult road, but thankfully, the home stretch includes some demonstrable lies about carbon taxes and an accidental exploration of San Francisco cyberpunk culture."
+                                    },
+                                    {
+                                        'url': 'https://knowledgefight.libsyn.com/knowledge-fight-endgame-part-5',
+                                        'title': '#130E: Endgame, Part 5',
+                                        'description': "Today, Dan and Jordan complete their coverage of Alex Jones' terrible 'documentary' Endgame. It's been a long and difficult road, but thankfully, the home stretch includes some demonstrable lies about carbon taxes and an accidental exploration of San Francisco cyberpunk culture."
 
-                            },
-                            ]};
+                                    },
+                                ]
+                            };
                             createFromTemplate(endgame);
                         </script>
                     </div>
                 </section>
-<!-- Obama Deception -->
-<section>
-    <h2 class="text-4xl py-3 font-black">Debunking the Obama Deception Documentary</h2>
-    <p class="text-lg py-3">Another "documentary" by Alex Jones is his "The Obama Deception: The Mask Comes Off" film. As with the Endgame documentary, this one is filled with misinformation and straight-up lies. The KF duo break down all of them in this series.</p>
+                <!-- Obama Deception -->
+                <section>
+                    <h2 class="text-4xl py-3 font-black">Debunking the Obama Deception Documentary</h2>
+                    <p class="text-lg py-3">Another "documentary" by Alex Jones is his "The Obama Deception: The Mask
+                        Comes Off" film. As with the Endgame documentary, this one is filled with misinformation and
+                        straight-up lies. The KF duo break down all of them in this series.</p>
 
-    <div id="obama" class="bg-accent-content/50 dark:text-gray-200 join join-vertical text-base-100 w-full">
-        <script>
-            const obama = {'obama': [
-            {
-                'url': 'https://knowledgefight.libsyn.com/knowledge-fight-obama-deception-part-1',
-                'title': '#230A: Obama Deception, Part 1',
-                'description': "Today, Dan and Jordan begin an adventure of breaking down Alex Jones' 2009 'documentary' The Obama Deception. In this installment, we get the lay of the land, meet some of the main players in the documentary, and find so many problems that this episode only covers the first 12 minutes of the film."
+                    <div id="obama"
+                        class="bg-accent-content/50 dark:text-gray-200 join join-vertical text-base-100 w-full">
+                        <script>
+                            const obama = {
+                                'obama': [
+                                    {
+                                        'url': 'https://knowledgefight.libsyn.com/knowledge-fight-obama-deception-part-1',
+                                        'title': '#230A: Obama Deception, Part 1',
+                                        'description': "Today, Dan and Jordan begin an adventure of breaking down Alex Jones' 2009 'documentary' The Obama Deception. In this installment, we get the lay of the land, meet some of the main players in the documentary, and find so many problems that this episode only covers the first 12 minutes of the film."
 
-            },
-            {
-                'url': 'https://knowledgefight.libsyn.com/knowledge-fight-obama-deception-part-2',
-                'title': '#230B: Obama Deception, Part 2',
-                'description': "Today, Dan and Jordan continue their look at Alex Jones' 2009 'documentary' The Obama Deception. In this installment, we meet another hip-hop legend, watch Alex reuse tons of footage from Endgame, and discuss whether or not the Federal Reserve is really private."
+                                    },
+                                    {
+                                        'url': 'https://knowledgefight.libsyn.com/knowledge-fight-obama-deception-part-2',
+                                        'title': '#230B: Obama Deception, Part 2',
+                                        'description': "Today, Dan and Jordan continue their look at Alex Jones' 2009 'documentary' The Obama Deception. In this installment, we meet another hip-hop legend, watch Alex reuse tons of footage from Endgame, and discuss whether or not the Federal Reserve is really private."
 
-            },
-            {
-                'url': 'https://knowledgefight.libsyn.com/knowledge-fight-obama-deception-part-3',
-                'title': '#230C: Obama Deception, Part 3',
-                'description': "Today, Dan and Jordan enter Part 3 of their coverage of Alex Jones' 2009 'documentary' The Obama Deception. In this installment, we see Alex completely blow it with list-making, misrepresent some history, and make a few decent points for the completely wrong reasons."
+                                    },
+                                    {
+                                        'url': 'https://knowledgefight.libsyn.com/knowledge-fight-obama-deception-part-3',
+                                        'title': '#230C: Obama Deception, Part 3',
+                                        'description': "Today, Dan and Jordan enter Part 3 of their coverage of Alex Jones' 2009 'documentary' The Obama Deception. In this installment, we see Alex completely blow it with list-making, misrepresent some history, and make a few decent points for the completely wrong reasons."
 
-            },
-            {
-                'url': 'https://knowledgefight.libsyn.com/knowledge-fight-obama-deception-part-4',
-                'title': '#230D: Obama Deception, Part 4',
-                'description': "Today, Dan and Jordan enter the home stretch, episode 4 of their coverage of Alex Jones' 2009 'documentary' The Obama Deception. In this installment, we pick up on a cliff-hanger and learn about how insane Ron Paul's brother is, then learn a little bit about Ron's career in the House of Representatives. It's not all Paul family stuff this episode though, there's also some historical revisionism and more made-up quotes."
+                                    },
+                                    {
+                                        'url': 'https://knowledgefight.libsyn.com/knowledge-fight-obama-deception-part-4',
+                                        'title': '#230D: Obama Deception, Part 4',
+                                        'description': "Today, Dan and Jordan enter the home stretch, episode 4 of their coverage of Alex Jones' 2009 'documentary' The Obama Deception. In this installment, we pick up on a cliff-hanger and learn about how insane Ron Paul's brother is, then learn a little bit about Ron's career in the House of Representatives. It's not all Paul family stuff this episode though, there's also some historical revisionism and more made-up quotes."
 
-            },
-            {
-                'url': 'https://knowledgefight.libsyn.com/knowledge-fight-obama-deception-part-5',
-                'title': '#230E: Obama Deception, Part 5',
-                'description': "Today, Dan and Jordan finish up their look at Alex Jones' 2009 'documentary' The Obama Deception, and are lucky to make it out with their sanity mostly intact."
+                                    },
+                                    {
+                                        'url': 'https://knowledgefight.libsyn.com/knowledge-fight-obama-deception-part-5',
+                                        'title': '#230E: Obama Deception, Part 5',
+                                        'description': "Today, Dan and Jordan finish up their look at Alex Jones' 2009 'documentary' The Obama Deception, and are lucky to make it out with their sanity mostly intact."
 
-            },
-            ]};
-            createFromTemplate(obama);
-        </script>
-    </div>
-</section>
-<!-- Funny Episodes -->
+                                    },
+                                ]
+                            };
+                            createFromTemplate(obama);
+                        </script>
+                    </div>
+                </section>
+                <!-- Funny Episodes -->
                 <section>
                     <h2 class="text-4xl py-3 font-black">Funny</h2>
-                    <p class="text-lg py-3">Alex Jones either doesn't understand humor or refuses to participate in it because it doesn't make him money. But on occasion he unintentionally does something that is legitimately funny.</p>
+                    <p class="text-lg py-3">Alex Jones either doesn't understand humor or refuses to participate in it
+                        because it doesn't make him money. But on occasion he unintentionally does something that is
+                        legitimately funny.</p>
 
-                    <div id="funny" class="bg-accent-content/50 dark:text-gray-200 join join-vertical text-base-100 w-full">
+                    <div id="funny"
+                        class="bg-accent-content/50 dark:text-gray-200 join join-vertical text-base-100 w-full">
                         <script>
-                            const funny = {'funny': [
-                            {
-                                'url': 'https://knowledgefight.libsyn.com/knowledge-fight-december-24-2018',
-                                'title': '#245: December 24, 2018 (Christmas Eve axe throwing)',
-                                'description': "Today, Dan and Jordan skip the family festivities and decide to celebrate Christmas Eve with Alex Jones. The gents expected Alex to be getting super religious and weird, but instead they find him admitting to a possible crime, wielding an hatchet on air, and barely talking about Christmas at all. It was a strange holiday for all"
-                            },
-                            {
-                                'url': 'https://knowledgefight.libsyn.com/knowledge-fight-lionel',
-                                'title': '#247: Lionel',
-                                'description': "Today, Dan and Jordan enjoy a Wacky Wednesday adventure looking at one of Alex's guests, the enigmatic QAnon enthusiast, Lionel. The gents dig into a cornucopia of old hot takes from Lionel and discuss the path from humor hack to political hack."
-                            },
-                            {
-                                'url': 'https://knowledgefight.libsyn.com/960-august-31-2024',
-                                'title': '#960: August 31, 2024 (Alex interviews ChatGPT)',
-                                'description': "In this installment, Dan and Jordan check in on a special report Alex put out where he had the best idea of his recent career: do a confrontational interview with ChatGPT."
+                            const funny = {
+                                'funny': [
+                                    {
+                                        'url': 'https://knowledgefight.libsyn.com/knowledge-fight-december-24-2018',
+                                        'title': '#245: December 24, 2018 (Christmas Eve axe throwing)',
+                                        'description': "Today, Dan and Jordan skip the family festivities and decide to celebrate Christmas Eve with Alex Jones. The gents expected Alex to be getting super religious and weird, but instead they find him admitting to a possible crime, wielding an hatchet on air, and barely talking about Christmas at all. It was a strange holiday for all"
+                                    },
+                                    {
+                                        'url': 'https://knowledgefight.libsyn.com/knowledge-fight-lionel',
+                                        'title': '#247: Lionel',
+                                        'description': "Today, Dan and Jordan enjoy a Wacky Wednesday adventure looking at one of Alex's guests, the enigmatic QAnon enthusiast, Lionel. The gents dig into a cornucopia of old hot takes from Lionel and discuss the path from humor hack to political hack."
+                                    },
+                                    {
+                                        'url': 'https://knowledgefight.libsyn.com/960-august-31-2024',
+                                        'title': '#960: August 31, 2024 (Alex interviews ChatGPT)',
+                                        'description': "In this installment, Dan and Jordan check in on a special report Alex put out where he had the best idea of his recent career: do a confrontational interview with ChatGPT."
 
-                            },
-                            ]};
+                                    },
+                                ]
+                            };
                             createFromTemplate(funny);
                         </script>
                     </div>
