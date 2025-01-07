@@ -39,10 +39,13 @@
     <template id="kfpod">
         <div class="collapse collapse-arrow join-item border-base-300 border"><input type="radio" name="list-ep" />
             <div class="collapse-title text-xl font-medium">
-                <a class="ep-link" href=""><span class="ep-title"></span></a>
+                <span class="ep-title"></span>
             </div>
             <div class="collapse-content">
-                <p class="ep-description"></p>
+                <div class="lg:flex">
+                    <p class="ep-description"></p>
+                    <a class="ep-link btn btn-outline btn-primary btn-sm" href="">Listen</a>
+                </div>
             </div>
         </div>
     </template>
@@ -97,7 +100,7 @@
                 overwhelming amount of information involved. This website was created to give new listeners a way to
                 understand and jump into the Knowledge Fight podcast world.
             </p>
-
+            
             <div class="container mx-auto py-10 grid gap-10">
                 <!-- Important Information -->
                 <section>
