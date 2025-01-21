@@ -49,19 +49,21 @@
         </nav> -->
         <main class="mb-auto px-10">
             <p class="text-lg py-3">
-                Alex Jones is a fraud. The <a href="https://knowledgefight.com/">Knowledge Fight podcast</a> has been
-                fact checking Jones for years, and have accumulated hundreds of episodeds debunking all of the claims
-                made on InfoWars. Dan and Jordan also outline just how Jones pulls off his grift by detailing all of the
-                rhetorical tricks the large-necked host uses to con his listeners.
+                Looking for something specific from either the Knowledge Fight podcast or Alex Jones content?  Use the search boxes below to find it.
             </p>
 
             <div class="container mx-auto py-10 grid gap-10">
                 <form action="" method="get" id="searchForm">
-                    <input type="text" name="search" class="input input-bordered w-full max-w-xs searchBox" id="search"
-                        placeholder="Search...">
+                    <label for="search_kf">Search Knowledge Fight</label>
+                    <input type="text" name="search_kf" class="input input-bordered w-full max-w-xs searchBox" id="search_kf"
+                        placeholder="Search KF Podcast...">
+                    <label for="search_iw">Search Alex Jones content</label>
+                    <input type="text" name="search_iw" class="input input-bordered w-full max-w-xs searchBox" id="search_iw"
+                        placeholder="Search Alex Jones content...">
                 </form>
                 <div id="search-results" class="grid gap-4"></div>
             </div>
+
             <script>
                 /* paste this line in verbatim */
                 window.formbutton = window.formbutton || function () { (formbutton.q = formbutton.q || []).push(arguments) };
@@ -89,93 +91,117 @@
 
                 // Search functionality
                 const searchForm = document.getElementById('searchForm');
-                const searchBox = document.getElementById('search');
+                const searchKF = document.getElementById('search_kf');
+                const searchIW = document.getElementById('search_iw');
                 const searchResults = document.getElementById('search-results');
+
+                async function performSearch(searchTerm, showParam) {
+                    if (!searchTerm.trim()) return;
+
+                    try {
+                        const apiUrl = `https://fight.fudgie.org/search/api/search/?s=${showParam}&keywords=${encodeURIComponent(searchTerm)}&exact=on&invert=off&order=episode&limit=25`;
+                        console.log('Requesting URL:', apiUrl);
+                        console.log('Full proxy URL:', `https://kfpodorg.arbrown83.workers.dev/?apiUrl=${encodeURIComponent(apiUrl)}`);
+
+                        const response = await axios.get(`https://kfpodorg.arbrown83.workers.dev/?apiUrl=${encodeURIComponent(apiUrl)}`, {
+                            headers: {
+                                'Accept': 'application/json'
+                            }
+                        });
+
+                        // Clear previous results
+                        searchResults.innerHTML = '';
+
+                        // Check if we have results
+                        if (response.data && response.data.results && Array.isArray(response.data.results)) {
+                            console.log('Number of results:', response.data.results.length);
+
+                            // Group results by episode date
+                            const episodeGroups = {};
+                            response.data.results.forEach(result => {
+                                if (!episodeGroups[result.date]) {
+                                    episodeGroups[result.date] = [];
+                                }
+                                episodeGroups[result.date].push(result);
+                            });
+
+                            // Display results grouped by episode
+                            Object.keys(episodeGroups).sort().forEach(date => {
+                                const episodeDiv = document.createElement('div');
+                                episodeDiv.className = 'mb-8';
+
+                                // Add episode date header
+                                const dateHeader = document.createElement('h2');
+                                dateHeader.className = 'text-xl font-bold mb-4';
+                                dateHeader.textContent = new Date(date).toLocaleDateString('en-US', {
+                                    weekday: 'long',
+                                    year: 'numeric',
+                                    month: 'long',
+                                    day: 'numeric'
+                                });
+                                episodeDiv.appendChild(dateHeader);
+
+                                // Add each mention from the episode
+                                episodeGroups[date].forEach(result => {
+                                    const resultDiv = document.createElement('div');
+                                    resultDiv.className = 'bg-accent-content/50 border border-base-300 dark:text-gray-200 mb-4 p-4 rounded-lg shadow text-base-100';
+                                    resultDiv.innerHTML = `
+                                        <div class="text-sm text-gray-00 mb-2">${result.timestamp}</div>
+                                        <div class="quote">
+                                            <p class="text-gray-400">${result.prev_line}</p>
+                                            <p class="font-medium my-2">${result.line}</p>
+                                            <p class="text-gray-400">${result.next_line}</p>
+                                        </div>
+                                        <a href="${result.url}" class="btn btn-outline btn-warning dark:btn-primary btn-sm" target="_blank">
+                                            View in episode →
+                                        </a>
+                                    `;
+                                    episodeDiv.appendChild(resultDiv);
+                                });
+
+                                searchResults.appendChild(episodeDiv);
+                            });
+
+                            if (response.data.results.length === 0) {
+                                searchResults.innerHTML = '<p class="text-center">No results found</p>';
+                            }
+                        } else {
+                            searchResults.innerHTML = '<p class="text-center">No results found</p>';
+                        }
+                    } catch (error) {
+                        console.error('Full error:', error);
+                        searchResults.innerHTML = '<p class="text-center text-red-500">Error fetching results. Please try again.</p>';
+                    }
+                }
 
                 searchForm.addEventListener('submit', async (e) => {
                     e.preventDefault();
-                    const searchTerm = searchBox.value.trim();
-                    console.log('Search term:', searchTerm);
+                    const kfTerm = searchKF.value.trim();
+                    const iwTerm = searchIW.value.trim();
+                    
+                    if (kfTerm) {
+                        await performSearch(kfTerm, 'kf');
+                        searchIW.value = ''; // Clear the other search box
+                    } else if (iwTerm) {
+                        await performSearch(iwTerm, 'aj,an,sr');
+                        searchKF.value = ''; // Clear the other search box
+                    }
+                });
 
-                    if (searchTerm) {
-                        try {
-                            const apiUrl = `https://fight.fudgie.org/search/api/search/?s=kf&keywords=${encodeURIComponent(searchTerm)}&exact=on&invert=off&order=episode&limit=25`;
-                            console.log('Requesting URL:', apiUrl);
-                            console.log('Full proxy URL:', `https://kfpodorg.arbrown83.workers.dev/?apiUrl=${encodeURIComponent(apiUrl)}`);
+                // Add input event listeners to trigger search on type
+                searchKF.addEventListener('input', async (e) => {
+                    const term = e.target.value.trim();
+                    if (term) {
+                        searchIW.value = ''; // Clear the other search box
+                        await performSearch(term, 'kf');
+                    }
+                });
 
-                            const response = await axios.get(`https://kfpodorg.arbrown83.workers.dev/?apiUrl=${encodeURIComponent(apiUrl)}`, {
-                                headers: {
-                                    'Accept': 'application/json'
-                                }
-                            });
-
-                            console.log('Raw response:', response);
-                            console.log('Response data type:', typeof response.data);
-                            console.log('Response data:', response.data);
-
-                            // Clear previous results
-                            searchResults.innerHTML = '';
-
-                            // Check if we have results
-                            if (response.data && response.data.results && Array.isArray(response.data.results)) {
-                                console.log('Number of results:', response.data.results.length);
-
-                                // Group results by episode date
-                                const episodeGroups = {};
-                                response.data.results.forEach(result => {
-                                    if (!episodeGroups[result.date]) {
-                                        episodeGroups[result.date] = [];
-                                    }
-                                    episodeGroups[result.date].push(result);
-                                });
-
-                                // Display results grouped by episode
-                                Object.keys(episodeGroups).sort().forEach(date => {
-                                    const episodeDiv = document.createElement('div');
-                                    episodeDiv.className = 'mb-8';
-
-                                    // Add episode date header
-                                    const dateHeader = document.createElement('h2');
-                                    dateHeader.className = 'text-xl font-bold mb-4';
-                                    dateHeader.textContent = new Date(date).toLocaleDateString('en-US', {
-                                        weekday: 'long',
-                                        year: 'numeric',
-                                        month: 'long',
-                                        day: 'numeric'
-                                    });
-                                    episodeDiv.appendChild(dateHeader);
-
-                                    // Add each mention from the episode
-                                    episodeGroups[date].forEach(result => {
-                                        const resultDiv = document.createElement('div');
-                                        resultDiv.className = 'bg-accent-content/50 border border-base-300 dark:text-gray-200 mb-4 p-4 rounded-lg shadow text-base-100';
-                                        resultDiv.innerHTML = `
-                                            <div class="text-sm text-gray-00 mb-2">${result.timestamp}</div>
-                                            <div class="quote">
-                                                <p class="text-gray-400">${result.prev_line}</p>
-                                                <p class="font-medium my-2">${result.line}</p>
-                                                <p class="text-gray-400">${result.next_line}</p>
-                                            </div>
-                                            <a href="${result.url}" class="btn btn-outline btn-warning dark:btn-primary btn-sm" target="_blank">
-                                                View in episode →
-                                            </a>
-                                        `;
-                                        episodeDiv.appendChild(resultDiv);
-                                    });
-
-                                    searchResults.appendChild(episodeDiv);
-                                });
-
-                                if (response.data.results.length === 0) {
-                                    searchResults.innerHTML = '<p class="text-center">No results found</p>';
-                                }
-                            } else {
-                                searchResults.innerHTML = '<p class="text-center">No results found</p>';
-                            }
-                        } catch (error) {
-                            console.error('Full error:', error);
-                            searchResults.innerHTML = '<p class="text-center text-red-500">Error fetching results. Please try again.</p>';
-                        }
+                searchIW.addEventListener('input', async (e) => {
+                    const term = e.target.value.trim();
+                    if (term) {
+                        searchKF.value = ''; // Clear the other search box
+                        await performSearch(term, 'aj,an,sr');
                     }
                 });
             </script>
