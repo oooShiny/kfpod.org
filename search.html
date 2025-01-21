@@ -117,26 +117,63 @@
                                         }
                                     });
                                     
-                                    console.log('Response data:', response.data);
-                            
                                     // Clear previous results
                                     searchResults.innerHTML = '';
                             
-                                    // Display results
+                                    // Check if we have results
                                     if (response.data && Array.isArray(response.data)) {
                                         console.log('Number of results:', response.data.length);
+                                        
+                                        // Group results by episode date
+                                        const episodeGroups = {};
                                         response.data.forEach(result => {
-                                            const resultDiv = document.createElement('div');
-                                            resultDiv.className = 'p-4 bg-white rounded shadow';
-                                            resultDiv.innerHTML = `
-                                                <h3 class="font-bold">${result.title || 'Episode'}</h3>
-                                                <p>${result.description || ''}</p>
-                                                ${result.date ? `<p class="text-sm text-gray-600">Date: ${result.date}</p>` : ''}
-                                            `;
-                                            searchResults.appendChild(resultDiv);
+                                            if (!episodeGroups[result.date]) {
+                                                episodeGroups[result.date] = [];
+                                            }
+                                            episodeGroups[result.date].push(result);
                                         });
+                            
+                                        // Display results grouped by episode
+                                        Object.keys(episodeGroups).sort().forEach(date => {
+                                            const episodeDiv = document.createElement('div');
+                                            episodeDiv.className = 'mb-8';
+                                            
+                                            // Add episode date header
+                                            const dateHeader = document.createElement('h2');
+                                            dateHeader.className = 'text-xl font-bold mb-4';
+                                            dateHeader.textContent = new Date(date).toLocaleDateString('en-US', {
+                                                weekday: 'long',
+                                                year: 'numeric',
+                                                month: 'long',
+                                                day: 'numeric'
+                                            });
+                                            episodeDiv.appendChild(dateHeader);
+                            
+                                            // Add each mention from the episode
+                                            episodeGroups[date].forEach(result => {
+                                                const resultDiv = document.createElement('div');
+                                                resultDiv.className = 'p-4 bg-white rounded shadow mb-4';
+                                                resultDiv.innerHTML = `
+                                                    <div class="text-sm text-gray-600 mb-2">${result.timestamp}</div>
+                                                    <div class="quote">
+                                                        <p class="text-gray-500">${result.prev_line}</p>
+                                                        <p class="font-medium my-2">${result.line}</p>
+                                                        <p class="text-gray-500">${result.next_line}</p>
+                                                    </div>
+                                                    <a href="${result.url}" class="text-blue-600 hover:text-blue-800 text-sm mt-2 inline-block" target="_blank">
+                                                        View in episode →
+                                                    </a>
+                                                `;
+                                                episodeDiv.appendChild(resultDiv);
+                                            });
+                            
+                                            searchResults.appendChild(episodeDiv);
+                                        });
+                            
+                                        if (response.data.length === 0) {
+                                            searchResults.innerHTML = '<p class="text-center">No results found</p>';
+                                        }
                                     } else {
-                                        console.log('Response is not an array:', typeof response.data);
                                         searchResults.innerHTML = '<p class="text-center">No results found</p>';
                                     }
                                 } catch (error) {
