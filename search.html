@@ -107,6 +107,43 @@
 
                             // Clear previous results
                             searchResults.innerHTML = '';
+                            if (searchTerm) {
+                                try {
+                                    const apiUrl = `https://fight.fudgie.org/search/api/search/?s=kf&keywords=${encodeURIComponent(searchTerm)}&exact=on&invert=off&order=episode&limit=25`;
+                                    console.log('Requesting URL:', apiUrl);
+                                    const response = await axios.get(`https://kfpodorg.arbrown83.workers.dev/?apiUrl=${encodeURIComponent(apiUrl)}`, {
+                                        headers: {
+                                            'Accept': 'application/json'
+                                        }
+                                    });
+                                    
+                                    console.log('Response data:', response.data);
+                            
+                                    // Clear previous results
+                                    searchResults.innerHTML = '';
+                            
+                                    // Display results
+                                    if (response.data && Array.isArray(response.data)) {
+                                        console.log('Number of results:', response.data.length);
+                                        response.data.forEach(result => {
+                                            const resultDiv = document.createElement('div');
+                                            resultDiv.className = 'p-4 bg-white rounded shadow';
+                                            resultDiv.innerHTML = `
+                                                <h3 class="font-bold">${result.title || 'Episode'}</h3>
+                                                <p>${result.description || ''}</p>
+                                                ${result.date ? `<p class="text-sm text-gray-600">Date: ${result.date}</p>` : ''}
+                                            `;
+                                            searchResults.appendChild(resultDiv);
+                                        });
+                                    } else {
+                                        console.log('Response is not an array:', typeof response.data);
+                                        searchResults.innerHTML = '<p class="text-center">No results found</p>';
+                                    }
+                                } catch (error) {
+                                    console.error('Full error:', error);
+                                    searchResults.innerHTML = '<p class="text-center text-red-500">Error fetching results. Please try again.</p>';
+                                }
+                            }
 
                             // Display results
                             if (response.data && Array.isArray(response.data)) {
