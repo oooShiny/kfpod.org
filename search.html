@@ -98,19 +98,11 @@
 
                     if (searchTerm) {
                         try {
-                            var config = {
-                            method: 'get',
-                            url: `https://fight.fudgie.org/search/api/search/?s=kf&keywords=${encodeURIComponent(searchTerm)}&exact=on&invert=off&order=episode&limit=25`,
-                            headers: { 
-                                'User-Agent': 'Apidog/1.0.0 (https://apidog.com)', 
-                                'Accept': '*/*', 
-                                'Host': 'fight.fudgie.org', 
-                                'Connection': 'keep-alive'
-                            }
-                            };
-
-
-                            const response = await axios(config);
+                            const response = await axios.get(`https://fight.fudgie.org/search/api/search/?s=kf&keywords=${encodeURIComponent(searchTerm)}&exact=on&invert=off&order=episode&limit=25`, {
+                                headers: {
+                                    'Accept': 'application/json'
+                                }
+                            });
 
                             // Clear previous results
                             searchResults.innerHTML = '';
