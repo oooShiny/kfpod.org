@@ -95,17 +95,24 @@
                 searchForm.addEventListener('submit', async (e) => {
                     e.preventDefault();
                     const searchTerm = searchBox.value.trim();
+                    console.log('Search term:', searchTerm);
 
                     if (searchTerm) {
                         try {
                             const apiUrl = `https://fight.fudgie.org/search/api/search/?s=kf&keywords=${encodeURIComponent(searchTerm)}&exact=on&invert=off&order=episode&limit=25`;
                             console.log('Requesting URL:', apiUrl);
+                            console.log('Full proxy URL:', `https://kfpodorg.arbrown83.workers.dev/?apiUrl=${encodeURIComponent(apiUrl)}`);
+                            
                             const response = await axios.get(`https://kfpodorg.arbrown83.workers.dev/?apiUrl=${encodeURIComponent(apiUrl)}`, {
                                 headers: {
                                     'Accept': 'application/json'
                                 }
                             });
                             
+                            console.log('Raw response:', response);
+                            console.log('Response data type:', typeof response.data);
+                            console.log('Response data:', response.data);
+
                             // Clear previous results
                             searchResults.innerHTML = '';
 
