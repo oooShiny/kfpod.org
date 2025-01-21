@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Knowledge Fight Podcast</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="/images/kfpod.png">
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@4.12.14/dist/full.min.css" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <style>
+        main {
+            background-color: #becbd3;
+            background-image: url('images/kf-bg.png');
+            background-size: cover;
+            background-position: bottom;
+            background-blend-mode: soft-light;
+        }
+
+        body,
+        footer {
+            background-color: #bdcbd3;
+        }
+
+        @media (prefers-color-scheme: dark) {
+
+            html,
+            body,
+            main,
+            footer {
+                background-color: #212121 !important;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div id="body-content" class="flex flex-col h-screen justify-between">
+        <header class="py-10">
+            <h1 class="text-5xl lg:text-7xl font-bold text-center uppercase tracking-widest">Knowledge Fight</h1>
+        </header>
+        <!-- <nav>
+            <ul class="flex gap-8 mx-auto w-fit">
+                <li>Home</li>
+                <li>About</li>
+                <li>Search</li>
+            </ul>
+        </nav> -->
+        <main class="mb-auto px-10">
+            <p class="text-lg py-3">
+                Alex Jones is a fraud. The <a href="https://knowledgefight.com/">Knowledge Fight podcast</a> has been
+                fact checking Jones for years, and have accumulated hundreds of episodeds debunking all of the claims
+                made on InfoWars. Dan and Jordan also outline just how Jones pulls off his grift by detailing all of the
+                rhetorical tricks the large-necked host uses to con his listeners.
+            </p>
+
+            <div class="container mx-auto py-10 grid gap-10">
+                <form action="" method="get" id="searchForm">
+                    <input type="text" name="search" class="input input-bordered w-full max-w-xs searchBox" id="search"
+                        placeholder="Search...">
+                </form>
+                <div id="search-results" class="grid gap-4"></div>
+            </div>
+            <script>
+                /* paste this line in verbatim */
+                window.formbutton = window.formbutton || function () { (formbutton.q = formbutton.q || []).push(arguments) };
+                /* customize formbutton below*/
+                formbutton("create", {
+                    action: "https://formspree.io/f/xeoopgpv",
+                    title: "Suggest an Episode",
+                    fields: [
+                        {
+                            type: "email",
+                            label: "Email:",
+                            name: "email",
+                            required: true,
+                            placeholder: "your@email.com"
+                        },
+                        {
+                            type: "textarea",
+                            label: "Message:",
+                            name: "message",
+                            placeholder: "Got a suggestion of a good KF episode? Let us know!",
+                        },
+                        { type: "submit" }
+                    ],
+                });
+
+                // Search functionality
+                const searchForm = document.getElementById('searchForm');
+                const searchBox = document.getElementById('search');
+                const searchResults = document.getElementById('search-results');
+
+                searchForm.addEventListener('submit', async (e) => {
+                    e.preventDefault();
+                    const searchTerm = searchBox.value.trim();
+
+                    if (searchTerm) {
+                        try {
+                            const response = await axios.get(`https://fight.fudgie.org/search/api/search/?s=kf&keywords=${encodeURIComponent(searchTerm)}&exact=on&invert=off&order=episode&limit=25&format=json`);
+
+                            // Clear previous results
+                            searchResults.innerHTML = '';
+
+                            // Display results
+                            if (response.data && Array.isArray(response.data)) {
+                                response.data.forEach(result => {
+                                    const resultDiv = document.createElement('div');
+                                    resultDiv.className = 'p-4 bg-white rounded shadow';
+                                    resultDiv.innerHTML = `
+                              <h3 class="font-bold">${result.title || 'Episode'}</h3>
+                              <p>${result.description || ''}</p>
+                              ${result.date ? `<p class="text-sm text-gray-600">Date: ${result.date}</p>` : ''}
+                            `;
+                                    searchResults.appendChild(resultDiv);
+                                });
+                            } else {
+                                searchResults.innerHTML = '<p class="text-center">No results found</p>';
+                            }
+                        } catch (error) {
+                            searchResults.innerHTML = '<p class="text-center text-red-500">Error fetching results. Please try again.</p>';
+                            console.error('Search error:', error);
+                        }
+                    }
+                });
+            </script>
+    </div>
+
+    <img class="mx-auto h-40" src="images/aj-footer.png" alt="AJ">
+    </main>
+    <footer>
+
+    </footer>
+    </div>
+</body>
+<script src="https://formspree.io/js/formbutton-v1.min.js" defer></script>
+<script>
+    /* paste this line in verbatim */
+    window.formbutton = window.formbutton || function () { (formbutton.q = formbutton.q || []).push(arguments) };
+    /* customize formbutton below*/
+    formbutton("create", {
+        action: "https://formspree.io/f/xeoopgpv",
+        title: "Suggest an Episode",
+        fields: [
+            {
+                type: "email",
+                label: "Email:",
+                name: "email",
+                required: true,
+                placeholder: "your@email.com"
+            },
+            {
+                type: "textarea",
+                label: "Message:",
+                name: "message",
+                placeholder: "Got a suggestion of a good KF episode? Let us know!",
+            },
+            { type: "submit" }
+        ],
+    });
+</script>
+
+</html>
