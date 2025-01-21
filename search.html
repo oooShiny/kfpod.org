@@ -53,13 +53,17 @@
             </p>
 
             <div class="container mx-auto py-10 grid gap-10">
-                <form action="" method="get" id="searchForm">
-                    <label for="search_kf">Search Knowledge Fight</label>
-                    <input type="text" name="search_kf" class="input input-bordered w-full max-w-xs searchBox" id="search_kf"
-                        placeholder="Search KF Podcast...">
-                    <label for="search_iw">Search Alex Jones content</label>
-                    <input type="text" name="search_iw" class="input input-bordered w-full max-w-xs searchBox" id="search_iw"
-                        placeholder="Search Alex Jones content...">
+                <form action="" method="get" id="searchForm" class="grid grid-cols-2">
+                    <div class="flex flex-col">
+                        <label for="search_kf">Search Knowledge Fight</label>
+                        <input type="text" name="search_kf" class="input input-bordered w-full max-w-xs searchBox" id="search_kf"
+                            placeholder="Search KF Podcast...">
+                    </div>
+                    <div class="flex flex-col">
+                        <label for="search_iw">Search Alex Jones content</label>
+                        <input type="text" name="search_iw" class="input input-bordered w-full max-w-xs searchBox" id="search_iw"
+                            placeholder="Search Alex Jones content...">
+                    </div>
                 </form>
                 <div id="search-results" class="grid gap-4"></div>
             </div>
