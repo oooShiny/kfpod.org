@@ -98,7 +98,8 @@
 
                     if (searchTerm) {
                         try {
-                            const response = await axios.get(`https://fight.fudgie.org/search/api/search/?s=kf&keywords=${encodeURIComponent(searchTerm)}&exact=on&invert=off&order=episode&limit=25`, {
+                            const apiUrl = `https://fight.fudgie.org/search/api/search/?s=kf&keywords=${encodeURIComponent(searchTerm)}&exact=on&invert=off&order=episode&limit=25`;
+                            const response = await axios.get(`https://kfpodorg.arbrown83.workers.dev/?apiUrl=${encodeURIComponent(apiUrl)}`, {
                                 headers: {
                                     'Accept': 'application/json'
                                 }
