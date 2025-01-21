@@ -117,12 +117,12 @@
                             searchResults.innerHTML = '';
 
                             // Check if we have results
-                            if (response.data && Array.isArray(response.data)) {
-                                console.log('Number of results:', response.data.length);
+                            if (response.data && response.data.results && Array.isArray(response.data.results)) {
+                                console.log('Number of results:', response.data.results.length);
                                 
                                 // Group results by episode date
                                 const episodeGroups = {};
-                                response.data.forEach(result => {
+                                response.data.results.forEach(result => {
                                     if (!episodeGroups[result.date]) {
                                         episodeGroups[result.date] = [];
                                     }
@@ -166,7 +166,7 @@
                                     searchResults.appendChild(episodeDiv);
                                 });
                             
-                                if (response.data.length === 0) {
+                                if (response.data.results.length === 0) {
                                     searchResults.innerHTML = '<p class="text-center">No results found</p>';
                                 }
                             } else {
