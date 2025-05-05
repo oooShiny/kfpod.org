@@ -1,173 +1,251 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <title>Knowledge Fight Podcast</title>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/daisyui@4.12.14/dist/full.min.css" rel="stylesheet" type="text/css" />
-    <script src="https://cdn.tailwindcss.com"></script>
-    <style>
-        main {
-            background-color: #becbd3;
-            background-image: url('images/kf-bg.png');
-            background-size: cover;
-            background-position: center;
-            background-blend-mode: soft-light;
-        }
-        body, footer {
-            background-color: #bdcbd3;
-        }
-    </style>
-    <script defer data-domain="kfpod.org" src="https://plausible.io/js/script.js"></script>
-</head>
-<body>
-    <div class="flex flex-col h-screen justify-between">
-        <header class="py-10">
-            <h1 class="text-7xl font-bold text-center uppercase tracking-widest">Knowledge Fight</h1>
-        </header>
-        <nav>
-            <ul class="text-blue-700 dark:text-blue-400 flex font-black gap-8 mx-auto py-6 uppercase w-fit">
-                <li><a class="hover:border-y-2 hover:border-y-error" href="/">Home</a></li>
-                <li><a class="hover:border-y-2 hover:border-y-error" href="/about.html">About</a></li>
-                <li><a class="hover:border-y-2 hover:border-y-error" href="/faq.html">FAQ</a></li>
-                <li><a class="hover:border-y-2 hover:border-y-error" href="/search.html">Search</a></li>
-                <li><a class="hover:border-y-2 hover:border-y-error" href="/contact.html">Contact</a></li>
-            </ul>
-        </nav>
-        <main class="mb-auto px-10">
-            <p>
-                Alex Jones is a fraud. The Knowledge Fight podcast has been fact 
-                checking Jones for years. This website was created to give new 
-                listeners a way to jump into the KF ecosystem.
-            </p>
 
-            <div class="py-10">
-                <ul class="timeline timeline-snap-icon max-md:timeline-compact timeline-vertical">
-                    <li>
-                      <div class="timeline-middle">
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          viewBox="0 0 20 20"
-                          fill="currentColor"
-                          class="h-5 w-5">
-                          <path
-                            fill-rule="evenodd"
-                            d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.857-9.809a.75.75 0 00-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5z"
-                            clip-rule="evenodd" />
-                        </svg>
-                      </div>
-                      <div class="timeline-start mb-10 md:text-end">
-                        <time class="font-mono italic">1984</time>
-                        <div class="text-lg font-black">First Macintosh computer</div>
-                        The Apple Macintosh—later rebranded as the Macintosh 128K—is the original Apple Macintosh
-                        personal computer. It played a pivotal role in establishing desktop publishing as a general
-                        office function. The motherboard, a 9 in (23 cm) CRT monitor, and a floppy drive were housed
-                        in a beige case with integrated carrying handle; it came with a keyboard and single-button
-                        mouse.
-                      </div>
-                      <hr />
-                    </li>
-                    <li>
-                      <hr />
-                      <div class="timeline-middle">
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          viewBox="0 0 20 20"
-                          fill="currentColor"
-                          class="h-5 w-5">
-                          <path
-                            fill-rule="evenodd"
-                            d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.857-9.809a.75.75 0 00-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5z"
-                            clip-rule="evenodd" />
-                        </svg>
-                      </div>
-                      <div class="timeline-end mb-10">
-                        <time class="font-mono italic">1998</time>
-                        <div class="text-lg font-black">iMac</div>
-                        iMac is a family of all-in-one Mac desktop computers designed and built by Apple Inc. It has
-                        been the primary part of Apple's consumer desktop offerings since its debut in August 1998,
-                        and has evolved through seven distinct forms
-                      </div>
-                      <hr />
-                    </li>
-                    <li>
-                      <hr />
-                      <div class="timeline-middle">
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          viewBox="0 0 20 20"
-                          fill="currentColor"
-                          class="h-5 w-5">
-                          <path
-                            fill-rule="evenodd"
-                            d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.857-9.809a.75.75 0 00-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5z"
-                            clip-rule="evenodd" />
-                        </svg>
-                      </div>
-                      <div class="timeline-start mb-10 md:text-end">
-                        <time class="font-mono italic">2001</time>
-                        <div class="text-lg font-black">iPod</div>
-                        The iPod is a discontinued series of portable media players and multi-purpose mobile devices
-                        designed and marketed by Apple Inc. The first version was released on October 23, 2001, about
-                        8+1⁄2 months after the Macintosh version of iTunes was released. Apple sold an estimated 450
-                        million iPod products as of 2022. Apple discontinued the iPod product line on May 10, 2022. At
-                        over 20 years, the iPod brand is the oldest to be discontinued by Apple
-                      </div>
-                      <hr />
-                    </li>
-                    <li>
-                      <hr />
-                      <div class="timeline-middle">
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          viewBox="0 0 20 20"
-                          fill="currentColor"
-                          class="h-5 w-5">
-                          <path
-                            fill-rule="evenodd"
-                            d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.857-9.809a.75.75 0 00-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5z"
-                            clip-rule="evenodd" />
-                        </svg>
-                      </div>
-                      <div class="timeline-end mb-10">
-                        <time class="font-mono italic">2007</time>
-                        <div class="text-lg font-black">iPhone</div>
-                        iPhone is a line of smartphones produced by Apple Inc. that use Apple's own iOS mobile
-                        operating system. The first-generation iPhone was announced by then-Apple CEO Steve Jobs on
-                        January 9, 2007. Since then, Apple has annually released new iPhone models and iOS updates. As
-                        of November 1, 2018, more than 2.2 billion iPhones had been sold. As of 2022, the iPhone
-                        accounts for 15.6% of global smartphone market share
-                      </div>
-                      <hr />
-                    </li>
-                    <li>
-                      <hr />
-                      <div class="timeline-middle">
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          viewBox="0 0 20 20"
-                          fill="currentColor"
-                          class="h-5 w-5">
-                          <path
-                            fill-rule="evenodd"
-                            d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.857-9.809a.75.75 0 00-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5z"
-                            clip-rule="evenodd" />
-                        </svg>
-                      </div>
-                      <div class="timeline-start mb-10 md:text-end">
-                        <time class="font-mono italic">2015</time>
-                        <div class="text-lg font-black">Apple Watch</div>
-                        The Apple Watch is a line of smartwatches produced by Apple Inc. It incorporates fitness
-                        tracking, health-oriented capabilities, and wireless telecommunication, and integrates with
-                        iOS and other Apple products and services
-                      </div>
-                    </li>
-                  </ul>
+<head>
+  <title>Knowledge Fight Podcast</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/x-icon" href="/images/kfpod.png">
+  <link href="https://cdn.jsdelivr.net/npm/daisyui@4.12.14/dist/full.min.css" rel="stylesheet" type="text/css" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <script src="player.js"></script>
+  <script src="jquery-3.7.1.min.js"></script>
+  <script src="js.cookie.js"></script>
+  <script src="video.min.js"></script>
+  <style>
+    main {
+      background-color: #becbd3;
+      background-image: url('images/kf-bg.png');
+      background-size: cover;
+      background-position: bottom;
+      background-blend-mode: soft-light;
+    }
+
+    body,
+    footer {
+      background-color: #bdcbd3;
+    }
+
+    @media (prefers-color-scheme: dark) {
+
+      html,
+      body,
+      main,
+      footer {
+        background-color: #212121 !important;
+      }
+    }
+  </style>
+  <script defer data-domain="kfpod.org" src="https://plausible.io/js/script.js"></script>
+</head>
+
+<body>
+  <div id="body-content" class="flex flex-col h-screen justify-between">
+    <header class="pt-10">
+      <h1 class="lg:text-xl font-light text-center uppercase tracking-widest">An Introduction to</h1>
+      <h1 class="text-5xl lg:text-7xl font-bold text-center uppercase tracking-widest"><a href="/">Knowledge Fight</a>
+      </h1>
+    </header>
+    <nav>
+      <ul class="text-blue-700 dark:text-blue-400 flex font-black gap-8 mx-auto py-6 uppercase w-fit">
+        <li><a class="hover:border-y-2 hover:border-y-error" href="/">Home</a></li>
+        <li><a class="hover:border-y-2 hover:border-y-error" href="/about.html">About</a></li>
+        <li><a class="hover:border-y-2 hover:border-y-error" href="/faq.html">FAQ</a></li>
+        <li><a class="hover:border-y-2 hover:border-y-error" href="/search.html">Search</a></li>
+        <li><a class="hover:border-y-2 hover:border-y-error" href="/contact.html">Contact</a></li>
+      </ul>
+    </nav>
+    <main class="mb-auto px-10">
+
+
+      <div class="py-10">
+        <ul class="timeline timeline-snap-icon max-md:timeline-compact timeline-vertical">
+          <li>
+            <div class="timeline-middle mb-10 md:text-middle">
+              <time class="font-mono italic text-4xl">2012</time>
             </div>
-        </main>
-        <footer class="pt-10">
-          <p class="bg-base-content/80 p-2 text-center text-white italic">Disclaimer: This site is not affiliated with Knowledge Fight, Alex Jones or InfoWars. I'm just an avid Knowledge Fight listener looking to help new listeners get started.</p>
-        </footer>
-    </div>
+            <hr class="bg-primary" />
+          </li>
+          <li>
+            <div class="timeline-end mb-10 p-2 md:text-start bg-black text-gray-300 rounded rounded-lg p-2">
+              <time class="font-mono italic">December 14, 2012</time>
+              <div class="text-lg font-black">Sandy Hook Shooting</div>
+              <p>20 students and 6 adults were killed in the Sandy Hook shooting.</p>
+            </div>
+            <hr class="bg-primary" />
+          </li>
+          <li>
+            <div class="p-2 timeline-start mb-10 md:text-end">
+              <time class="font-mono italic">December 19, 2012</time>
+              <div class="text-lg font-black">First "Staged" Claim</div>
+              <p>"They're running shops. They probably even staged this event in Sandy Hook. You better grow up, folks." <button id="btn15767650-0" class="btn btn-outline-secondary btn-sm" onclick="play_ep('aj/audio/20121219_Wed_Alex.mp3',10122.388,'0', '#btn15767650-0')">02:48:42</button></p>
+            </div>
+            <hr class="bg-primary" />
+          </li>
+          <li>
+            <div class="p-2 timeline-start mb-10 md:text-end">
+              <time class="font-mono italic">December 27, 2012</time>
+              <div class="text-lg font-black">Further Claims</div>
+              <p>"You don't get it. And I gotta say, more and more Sandy Hook does look like it was staged. Bare minimum, this guy was under psychiatric care."</p>
+            </div>
+            <hr class="bg-primary" />
+          </li>
+          <li>
+            <div class="timeline-middle mb-10 md:text-middle">
+              <time class="font-mono italic text-4xl">2013</time>
+            </div>
+            <hr class="bg-primary" />
+          </li>
+          <li>
+            <div class="p-2 timeline-start mb-10 md:text-end">
+              <time class="font-mono italic">January 18, 2013</time>
+              <div class="text-lg font-black">Professor Interview</div>
+              <p>"I don't actually believe in all these theories that are circulating about Sandy Hook, but we're going to talk to the professor before the bottom of the hour..."</p>
+            </div>
+            <hr class="bg-primary" />
+          </li>
+          <li>
+            <div class="p-2 timeline-start mb-10 md:text-end">
+              <time class="font-mono italic">March 7, 2013</time>
+              <div class="text-lg font-black">Globalist Claims</div>
+              <p>"These globalists are criminals. Of course they staged Sandy Hook. Of course."</p>
+            </div>
+            <hr class="bg-primary" />
+          </li>
+          <li>
+            <div class="p-2 timeline-start mb-10 md:text-end">
+              <time class="font-mono italic">March 15, 2013</time>
+              <div class="text-lg font-black">Continued Claims</div>
+              <p>"Absolutely, yeah. Their answer was to stage Sandy Hook. And of course they did it."</p>
+            </div>
+            <hr class="bg-primary" />
+          </li>
+          <li>
+            <div class="p-2 timeline-start mb-10 md:text-end">
+              <time class="font-mono italic">April 2, 2013</time>
+              <div class="text-lg font-black">Further Allegations</div>
+              <p>"But when 20 people get killed at Sandy Hook, which you can bet your boots, was a staged operation."</p>
+            </div>
+            <hr class="bg-primary" />
+          </li>
+          <li>
+            <div class="p-2 timeline-start mb-10 md:text-end">
+              <time class="font-mono italic">April 15, 2013</time>
+              <div class="text-lg font-black">Aurora Connection</div>
+              <p>"Folks, they staged Aurora. They staged Sandy Hook. The evidence is just overwhelming."</p>
+            </div>
+            <hr class="bg-primary" />
+          </li>
+          <li>
+            <div class="timeline-middle mb-10 md:text-middle">
+              <time class="font-mono italic text-4xl">2014</time>
+            </div>
+            <hr class="bg-primary" />
+          </li>
+          <li>
+            <div class="p-2 timeline-start mb-10 md:text-end">
+              <time class="font-mono italic">January 1, 2014</time>
+              <div class="text-lg font-black">PR Push Claims</div>
+              <p>"They staged Aurora. Sandy Hook has every trapping of being staged. They bare minimum staged a bunch of stuff after, as a PR push to get our guns."</p>
+            </div>
+            <hr class="bg-primary" />
+          </li>
+          <li>
+            <div class="timeline-middle mb-10 md:text-middle">
+              <time class="font-mono italic text-4xl">2018</time>
+            </div>
+            <hr class="bg-primary" />
+          </li>
+          <li>
+            <div class="timeline-end mb-10 p-2">
+              <time class="font-mono italic">April 16, 2018</time>
+              <div class="text-lg font-black">Heslin vs. Jones</div>
+              <p>Neil Heslin and Scarlett Lewis, parents of victim Jesse Lewis, filed a defamation suit against Jones,
+                Infowars and Free Speech Systems in Travis County, Texas.</p>
+              <p>Jones was found to be in contempt of court even before the trial started as a result of his failure to
+                produce witnesses and materials relevant to the procedures. Consequently, Jones and Infowars were fined
+                a total of $126,000 in October and December 2019.</p>
+            </div>
+            <hr class="bg-primary" />
+          </li>
+          <li>
+            <div class="timeline-end mb-10 p-2">
+              <time class="font-mono italic">June 26, 2018</time>
+              <div class="text-lg font-black">Lafferty et al. vs. Jones</div>
+              Seven families of victims and an FBI agent who responded to the attack filed a defamation lawsuit in
+              Connecticut Superior Court against Jones, Infowars, Free Speech Systems, Infowars Health and others for
+              spreading false claims, resulting in the harassment, stalking and threatening of the plaintiffs.
+            </div>
+            <hr class="bg-primary" />
+          </li>
+          <li>
+            <div class="timeline-middle mb-10 md:text-middle">
+              <time class="font-mono italic text-4xl">2019</time>
+            </div>
+            <hr class="bg-primary" />
+          </li>
+          <li>
+            <div class="timeline-end mb-10 p-2">
+              <time class="font-mono italic">February 2019</time>
+              <div class="text-lg font-black">Jones required to testify under oath</div>
+              Jones was later ordered to undergo a sworn deposition, along with three other defendants related to the
+              operation of Infowars. He was also ordered to turn over internal business documents related to Infowars.
+              In this deposition in the last week of March 2019, Jones acknowledged the deaths were real, stating he had
+              "almost like a form of psychosis", where he "basically thought everything was staged"
+            </div>
+            <hr class="bg-primary" />
+          </li>
+          <li>
+            <div class="timeline-end mb-10 p-2">
+              <time class="font-mono italic">March 25, 2019</time>
+              <div class="text-lg font-black">Jeremy Richman commits suicide</div>
+              Jeremy Richman, one of the plaintiffs, whose daughter Avielle was killed, committed suicide. Jones,
+              through his lawyer, offered condolences to Richman's family, but later that day on his show suggested that
+              Richman had been murdered and that his death had something to do with special counsel Robert Mueller's
+              investigation into Russian election interference.
+            </div>
+            <hr class="bg-primary" />
+          </li>
+          <li>
+            <div class="timeline-middle mb-10 md:text-middle">
+              <time class="font-mono italic text-4xl">2020</time>
+            </div>
+            <hr class="bg-primary" />
+          </li>
+          <li>
+            <div class="timeline-middle mb-10 md:text-middle">
+              <time class="font-mono italic text-4xl">2021</time>
+            </div>
+            <hr class="bg-primary" />
+          </li>
+          <li>
+            <div class="timeline-end mb-10 p-2">
+              <time class="font-mono italic">January 22, 2021</time>
+              <div class="text-lg font-black">Jones's Appeal Denied</div>
+              The Texas Supreme Court threw out an appeal for dismissal by Jones of four defamation lawsuits from families of Sandy Hook victims. The court allowed the judgments of two lower courts to stand without comment, allowing the lawsuits to continue.
+            </div>
+            <hr class="bg-primary" />
+          </li>
+          <li>
+            <div class="timeline-end mb-10 p-2">
+              <time class="font-mono italic">September 27, 2021</time>
+              <div class="text-lg font-black">Default Judgements Issued</div>
+              A district judge in Texas issued three default judgments against Jones, requiring him to pay all damages in two lawsuits. These rulings came after Jones repeatedly failed to hand over documents and evidence as ordered by the court, which the judge characterized as "flagrant bad faith and callous disregard for the responsibilities of discovery."
+            </div>
+          </li>
+        </ul>
+      </div>
+
+      <img class="mx-auto h-40" src="images/aj-footer.png" alt="AJ">
+    </main>
+
+    <footer>
+      <p class="bg-base-content/80 p-2 text-center text-sm text-white italic">Disclaimer: This site is not affiliated with
+        Knowledge Fight, Alex Jones or InfoWars. I'm just an avid Knowledge Fight listener looking to help new listeners
+        get started.</p>
+    </footer>
+  </div>
 </body>
+
 </html>
