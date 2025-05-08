@@ -107,7 +107,7 @@
                     </p>
                     <p class="text-lg mb-5">
                         He wastes no time insinuating that this event could
-                        be a hoax staged by the "globalists" to take your guns.
+                        be a hoax staged by the "globalists" to take your guns, even getting his guests to speculate wildly with zero evidence to support their claims.
                     </p>
                     <ul id="cards2">
                         <li class="card" id="card_1">
@@ -816,9 +816,9 @@
                                 </dialog>
                             </div>
                         </li>
-                    
+
                         <li class="card" id="card_2">
-                            <div class="card__content"> 
+                            <div class="card__content">
                                 <div class="flex items-end cursor-pointer open-modal" onclick="openModal('video-20140314-2')">
                                     <img src="images/mouth-right.webp" alt="bullhorn" class="h-10">
                                     <div class="chat chat-start pb-6">
@@ -964,7 +964,7 @@
                 </div>
                 <div>
                     <p class="text-lg pb-5">
-                        Here's another example from later in the year, where Alex is now referring to Halbig as his "top expert" that has confirmed that Sandy Hook was staged. 
+                        Here's another example from later in the year, where Alex is now referring to Halbig as his "top expert" that has confirmed that Sandy Hook was staged.
                     </p>
                     <div class="flex items-end cursor-pointer open-modal" onclick="openModal('video-20141203-1')">
                         <img src="images/mouth-right.webp" alt="bullhorn" class="h-10">
@@ -1070,7 +1070,7 @@
                     <div class="flex justify-evenly text-gray-500 border-t text-sm py-1">
                         <img src="images/ct.webp" alt="ct icon" class="h-3 self-center">
                         <p>0 days</p>
-                    </div>  
+                    </div>
                 </div>
                 <div>
                     <div class="flex gap-4">
@@ -1158,7 +1158,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                          
+
                                 <dialog class="bg-gray-950 border border-red-700 p-1 rounded-lg text-2xl text-gray-300 video-modal" id="video-20190325-1">
                                     <form method="dialog" class="bg-red-950 p-3 text-2xl text-gray-300">
                                         <button class="cursor-pointer hover:text-red-800 hover:underline video-modal-close">Close</button>
@@ -1225,7 +1225,7 @@
                             <h3 class="text-3xl pb-5">Jones required to testify under oath</h3>
                         </div>
                         <p class="text-lg pb-5">
-                            
+
                         </p>
                     </div>
                 </div>
@@ -1309,7 +1309,7 @@
             id="revealing-image-1">
     </div>
 
-
+    <div class="" id="sandy-hook-form-status"></div>
     <form id="sandy-hook-form" action="https://formspree.io/f/meogjkya" method="POST" class="mx-auto py-10 w-fit">
         <label class="mx-10">
           Your email:
@@ -1319,14 +1319,14 @@
           Your message:
           <textarea name="message" class="border border-red-900 rounded-sm"></textarea>
         </label>
-        <button class="bg-red-950 mx-10 p-3 px-10 rounded-sm" type="submit">Send</button>
+        <button class="bg-red-950 mx-10 p-3 px-10 rounded-sm cursor-pointer" type="submit">Send</button>
       </form>
-      <div id="sandy-hook-form-status"></div>
+
 
 </body>
 <script>
     var form = document.getElementById("sandy-hook-form");
-    
+
     async function handleSubmit(event) {
       event.preventDefault();
       var status = document.getElementById("sandy-hook-form-status");
@@ -1340,6 +1340,7 @@
       }).then(response => {
         if (response.ok) {
           status.innerHTML = "Thanks for your submission!";
+          status.classList.add('bg-red-950', 'border', 'border-red-500', 'mx-auto', 'my-5', 'p-5', 'rounded-2xl', 'text-2xl', 'text-white', 'w-fit');
           form.reset()
         } else {
           response.json().then(data => {
@@ -1348,10 +1349,12 @@
             } else {
               status.innerHTML = "Oops! There was a problem submitting your form"
             }
+            status.classList.add('bg-red-950', 'border', 'border-red-500', 'mx-auto', 'my-5', 'p-5', 'rounded-2xl', 'text-2xl', 'text-white', 'w-fit');
           })
         }
       }).catch(error => {
-        status.innerHTML = "Oops! There was a problem submitting your form"
+        status.innerHTML = "Oops! There was a problem submitting your form";
+        status.classList.add('bg-red-950', 'border', 'border-red-500', 'mx-auto', 'my-5', 'p-5', 'rounded-2xl', 'text-2xl', 'text-white', 'w-fit');
       });
     }
     form.addEventListener("submit", handleSubmit)
@@ -1365,7 +1368,7 @@
 
         // .showModal() is part of the HTMLDialogElement API
         modal.showModal();
-            
+
             const video = MusePlayer({
                 container: `#${video_container.id}`,
                 start: timestamp,
@@ -1377,7 +1380,7 @@
                 controls: ["-fullscreen", "+subtitles", "+volume", "-settings", "-chromecast", "-airplay"],
                 autoplay: true,
             });
-        
+
         modal.addEventListener("close", function onClose() {
             // "Close" button inside the form triggers "close" on dialog because of [method="dialog"]
             // .pause() is part of the HTMLMediaElement API
