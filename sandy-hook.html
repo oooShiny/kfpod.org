@@ -1216,6 +1216,11 @@
                 </div>
             </div>
         </div>
+        <div class="container mx-auto">
+            <p class="text-lg pb-5">And while the families are doing everything in their power to hold Alex Jones accountable, Jones is making a killing off of his fear mongering.</p>
+            <img src="images/alex_jones_timeline_of_money_aug2019-may2020.png" alt="timeline of infowars sales" width="100%" height="auto" class="revealing-image"
+            id="revealing-image-1">
+        </div>
     </div>
 <!-- 2021 -->
     <div class="md:flex">
@@ -1289,19 +1294,28 @@
     </div>
 </div>
 
+<div class="container mx-auto py-10">
+    <p class="text-lg py-10">How many days has it been since Alex Jones started using Sandy Hook as a hoax to fleece his audience into buying his products?</p>
+    <span class="time-since-sandy-hook angry block text-center text-7xl text-red-700"></span>
+    <p class="text-lg py-10">That's <span class="time-since-sandy-hook"></span> days since the families have known peace. All the while, Jones has been bringing in obscene amounts of money from his hateful propaganda, at the expense of regular people just trying to properly grieve their lost family members.</p>
+</div>
+
+<p class="angry block text-center text-7xl text-red-700">Alex Jones is a Monster</p>
 
 
 
 
 
-
-    <div>
+    <!-- <div>
         <img src="images/courthouse-steps.webp" alt="" title="" width="100%" height="auto" class="revealing-image"
             id="revealing-image-1">
-    </div>
+    </div> -->
 
-    <div class="" id="sandy-hook-form-status"></div>
-    <form id="sandy-hook-form" action="https://formspree.io/f/meogjkya" method="POST" class="mx-auto py-10 w-fit">
+    <div class="border container mx-auto">
+        <div class="" id="sandy-hook-form-status"></div>
+        <p class="text-lg pt-5 text-center">Got something to say about this? Send a message.</p>
+    
+    <form id="sandy-hook-form" action="https://formspree.io/f/meogjkya" method="POST" class="mx-auto py-5 w-fit">
         <label class="mx-10">
           Your email:
           <input type="email" name="email" class="border border-red-900 rounded-sm">
@@ -1312,10 +1326,25 @@
         </label>
         <button class="bg-red-950 mx-10 p-3 px-10 rounded-sm cursor-pointer" type="submit">Send</button>
       </form>
+    </div>
 
-
+      <p class="container mx-auto text-lg py-10">And just in case that wasn't enough for you, here's a super cut of every time Alex Emerick Jones mentioned Sandy Hook.</p>
+      <div class="muse-video-player flex justify-center h-72" data-video="UKCJR8L" data-search="0" data-links="0" data-logo="0" data-title="0" data-coverplayposition="center" data-width="576"></div>
+      
 </body>
 <script>
+    // Time since Sandy Hook JS.
+    const timeSinceSandyHook = document.getElementsByClassName("time-since-sandy-hook");
+    const date = new Date("2012-12-14");
+    const now = new Date();
+    const diff = now - date;
+    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+    for (let i = 0; i < timeSinceSandyHook.length; i++) {
+        timeSinceSandyHook[i].innerHTML = new Intl.NumberFormat().format(days) + " days";
+    }
+</script>
+<script>
+    // Formspree JS.
     var form = document.getElementById("sandy-hook-form");
 
     async function handleSubmit(event) {
@@ -1350,7 +1379,9 @@
     }
     form.addEventListener("submit", handleSubmit)
   </script>
+
 <script>
+    // MuseAI video modal JS.
     function openModal(id) {
         const modal = document.querySelector(`#${id}`);
         const video_container = document.querySelector(`#${id} div`);
